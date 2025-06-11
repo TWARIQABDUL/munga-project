@@ -12,7 +12,7 @@
 
 <body>
 
-    <header>
+    <header id="header">
         <nav>
             <h1>traver</h1>
             <ul>
@@ -25,7 +25,7 @@
         </nav>
     </header>
     <main>
-        <div class="back-button">
+        <div class="back-button" id="back-button">
             <img src="images/back.svg" alt="">
         </div>
         <section class="hero">
@@ -85,7 +85,7 @@
                 <h3>Top Selling</h3>
                 <p>Top Destinations</p>
             </div>
-            <div class="container">
+            <div class="card-container">
 
                 <div class="destination-cards">
                     <div class="card">
@@ -137,8 +137,8 @@
             <h3>Company</h3>
             <ul>
                 <li><a href="about.html">About</a></li>
-                <li><a href="#">Career</a></li>
-                <li><a href="#">Mobile</a></li>
+                <li><a href="index.html">Career</a></li>
+                <li><a href="contactus.html">Mobile</a></li>
             </ul>
         </div>
         <div class="contact">
@@ -158,6 +158,13 @@
             </ul>
         </div>
     </footer>
+    <script>
+        const back_button = document.getElementById('back-button');
+
+        back_button.addEventListener('click', () => {
+            window.location.href = "#header";
+        });
+    </script>
 </body>
 
 </html>

@@ -1,11 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Munga</title>
 </head>
+
 <body>
-    
+    <header id="header">
+        <nav>
+            <h1>traver</h1>
+            <ul>
+                <li><a href="#services">Service</a></li>
+                <li><a href="#department">Department</a></li>
+                <li><a href="#news-lette">Newsleter</a></li>
+                <li><a href="#footer">Site Map</a></li>
+            </ul>
+            <button>Signup</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="form-container">
+                <h2>Contact Us</h2>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button>Send</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer id="footer">
+        <div class="company">
+            <h3>Traver</h3>
+            <p>Book your trip in minute, get full
+                Control for much longer..</p>
+
+        </div>
+        <div class="links">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html">Career</a></li>
+                <li><a href="contactus.html">Mobile</a></li>
+            </ul>
+        </div>
+        <div class="contact">
+            <h3>Contact</h3>
+            <ul>
+                <li><a href="">Help/FAQ</a></li>
+                <li><a href="">Press</a></li>
+                <li><a href="">Affiliates</a></li>
+            </ul>
+        </div>
+        <div class="more-stuf">
+            <h3>More</h3>
+            <ul>
+                <li><a href="#">Airline Fees</a></li>
+                <li><a href="#">Airline</a></li>
+                <li><a href="#">Low fare tips</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="js/main.js">
+        const formGroup = document.querySelectorAll('.form-group');
+
+        formGroup.forEach(group => {
+            const input = group.querySelector('input');
+            input.addEventListener('focus', (e) => {
+                group.classList.add('active');
+            })
+            input.addEventListener('blur', () => {
+                if (input.value === '') {
+                    console.log('Input is empty');
+                    group.classList.remove('active');
+                }
+            })
+        });
+    </script>
 </body>
+
 </html>
