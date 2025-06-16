@@ -1,0 +1,8 @@
+#usr/bin/bash
+
+git push origin testing
+git checkout master
+git merge testing
+git push origin master
+echo "Swiching back to testing"
+git checkout testing

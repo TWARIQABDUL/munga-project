@@ -72,23 +72,7 @@
             <div class="container">
 
                 <div class="service-cards">
-                    <div class="card">
-                        <img src="images/satellite.svg" alt="Service 1">
-                        <h3>Calculated Weather</h3>
-                        <p>Built Wicket longer admire do barton vanity itself do in it</p>
-                    </div>
-                    <div class="card">
-                        <img src="images/plane.svg" alt="Service 2">
-                        <h3>Best Flights</h3>
-                        <p>Engrossed listening. Park gate sell they west hard for the.</p>
-                    </div>
-                    <div class="card">
-                        <img src="images/customization.svg" alt="Service 3">
-                        <h3>Customization</h3>
-                        <p>We deliver outsourced
-                            aviation services for
-                            military customers</p>
-                    </div>
+                    <!-- dynamic Card -->
                 </div>
             </div>
         </section>
@@ -175,10 +159,13 @@
     </footer>
     <script src="js/main.js"></script>
     <script>
+        const service_cards = document.querySelector(".service-cards");
+        console.log(service_cards);
+        
         let scrolling = 0
         window.addEventListener("scroll", () => {
             document.getElementById("scrol").innerHTML = ""
-            document.getElementById("scrol").style.display='none'
+            document.getElementById("scrol").style.display = 'none'
 
             scrolling = 1
             console.log("begin scrolling");
@@ -187,7 +174,7 @@
         })
         window.addEventListener("mousemove", () => {
             document.getElementById("scrol").innerHTML = ""
-            document.getElementById("scrol").style.display='none'
+            document.getElementById("scrol").style.display = 'none'
 
             scrolling = 1
             console.log("begin scrolling");
@@ -198,7 +185,7 @@
             if (scrolling < 1) {
                 // console.log("I am going to exit please scrol me");
                 document.getElementById("scrol").innerHTML = "what are you still doing here"
-            document.getElementById("scrol").style.display='block'
+                document.getElementById("scrol").style.display = 'block'
 
             }
 
@@ -238,6 +225,40 @@
         back_button.addEventListener('click', () => {
             window.location.href = "login.html";
         });
+        const addServiceCard = (content)=>{
+            const elem = document.createElement("div")
+            elem.classList.add("card")
+            const img = document.createElement("img")
+            elem.appendChild(img)
+            img.src = content.icon
+            const h3 = document.createElement("h3")
+            elem.appendChild(h3)
+            h3.innerHTML=content.title
+            const p = document.createElement("p")
+            elem.appendChild(p)
+            p.innerHTML = content.body
+            
+            service_cards.append(elem);
+        }
+        const categories = [
+            {
+                icon:"images/satellite.svg",
+                title:"Calculated Weather",
+                body:"Built Wicket longer admire do barton vanity itself do in it"
+            },
+            {
+                icon:"images/plane.svg",
+                title:"Best Flights",
+                body:"Engrossed listening. Park gate sell they west hard for the."
+            },
+            {
+                icon:"images/customization.svg",
+                title:"Customizatio",
+                body:"We deliver outsourced aviation services for military customers."
+            }
+        ]
+        categories.map(content => addServiceCard(content))
+
     </script>
 </body>
 
