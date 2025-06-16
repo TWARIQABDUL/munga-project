@@ -21,9 +21,26 @@
                 <li><a href="#news-lette">Newsleter</a></li>
                 <li><a href="#footer">Site Map</a></li>
             </ul>
-            <button>Signup</button>
+            <div class="buttons_auth">
+                <button id="register">Signup</button>
+                <button class="mobile-menu" id="menu"> <img src="images/icon-menu.svg" alt=""></button>
+            </div>
         </nav>
     </header>
+    <div class="scrol-reminder" id="scrol">
+        <!-- Hey you're taking to long -->
+    </div>
+    <div class="mobile-menu-container ">
+        <button class="close-menu" id="close"><img src="images/icon-close.svg" alt=""></button>
+
+        <!-- <button class=""> <img src="images/icon-close.svg" alt=""></button> -->
+        <ul>
+            <li><a href="/about.html">Home</a></li>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <!-- <li><a href="#footer">Site Map</a></li> -->
+        </ul>
+    </div>
     <main>
         <div class="back-button" id="back-button">
             <img src="images/back.svg" alt="">
@@ -32,9 +49,7 @@
             <div class="hero-content">
                 <div class="text-container">
                     <h1>Welcome to Traver</h1>
-                    <h2>Travel, enjoy
-                        and live a new
-                        and full life</h2>
+                    <h2 id="trael-text"></h2>
                     <p>Built Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed
                         listening. Park gate sell they west hard for the.</p>
                     <div class="buttons">
@@ -158,11 +173,70 @@
             </ul>
         </div>
     </footer>
+    <script src="js/main.js"></script>
     <script>
-        const back_button = document.getElementById('back-button');
+        let scrolling = 0
+        window.addEventListener("scroll", () => {
+            document.getElementById("scrol").innerHTML = ""
+            document.getElementById("scrol").style.display='none'
 
+            scrolling = 1
+            console.log("begin scrolling");
+
+
+        })
+        window.addEventListener("mousemove", () => {
+            document.getElementById("scrol").innerHTML = ""
+            document.getElementById("scrol").style.display='none'
+
+            scrolling = 1
+            console.log("begin scrolling");
+
+
+        })
+        let timer = setInterval(() => {
+            if (scrolling < 1) {
+                // console.log("I am going to exit please scrol me");
+                document.getElementById("scrol").innerHTML = "what are you still doing here"
+            document.getElementById("scrol").style.display='block'
+
+            }
+
+            scrolling = 0
+
+        }, 3000)
+
+        console.log(scrolling);
+        const back_button = document.getElementById('back-button');
+        const menu = document.getElementById('menu');
+        const register = document.getElementById("register");
+        const movingText = "Travel, enjoy and live a new and full life".split("")
+        const travel_text = document.getElementById("trael-text")
+
+        let count = 0
+
+
+        for (let index = 0; index < movingText.length; index++) {
+            const timeOut = setTimeout(() => {
+                if (movingText[index] === " ") {
+                    travel_text.append(" ")
+                }
+                travel_text.append(`${movingText[index]}`)
+                // console.log(movingText[index]);
+            }, 100 * index)
+        }
+
+
+        movingText.forEach((text) => {
+
+        })
+
+        // console.log(movingText);
+        register.addEventListener('click', () => {
+            window.location.href = "login.html"
+        })
         back_button.addEventListener('click', () => {
-            window.location.href = "#header";
+            window.location.href = "login.html";
         });
     </script>
 </body>

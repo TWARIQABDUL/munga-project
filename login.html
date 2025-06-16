@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Munga Login</title>
+</head>
+
+<body>
+    <div class="container-login">
+        <div class="left">
+            <h1>Traver</h1>
+            <p>Book your trip in minute, get full Control for much longer.
+            </p>
+        </div>
+        <div class="login-template">
+            <div class="form">
+                <h1>Create Account</h1>
+                <div class="social">
+                    <button>
+                        <img src="images/google.svg" alt="Google Icon">
+                        <span>Sign in with Google</span>
+                    </button>
+                    <button>
+                        <img src="images/facebook.svg" alt="Facebook Icon">
+                        <span>Sign in with Facebook</span>
+                </div>
+                <p>-OR-</p>
+                <form id="form">
+                    <div class="group">
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name">Full Name</label>
+                        <div class="span ">
+                            &#128072;
+                        </div>
+                        <div class="span">
+                            &#129299;
+                        </div>
+                    </div>
+                    <div class="group">
+
+                        <input type="email" id="email" placeholder=" " required>
+                        <label for="email">Email</label>
+                        <div class="span ">
+                            &#128519;
+                        </div>
+                        <div class="span">
+                            &#128077;
+                        </div>
+                    </div>
+                    <div class="group">
+                        <input type="password" id="password" placeholder=" " required>
+                        <label for="password">Password</label>
+                        <div class="span ">
+                            &#x1F648;
+                        </div>
+                        <div class="span">
+                            &#x1F648;          
+                        </div>
+                        <div class="span"> 
+                            &#x1F971;
+                        </div>
+                    </div>
+                    <div class="group">
+                        <input type="password" id="confirm-password" placeholder=" " required>
+                        <label for="confirm-password">Confirm Password</label>
+                        <div class="span ">
+                             &#x1F914;
+                        </div>
+                        <div class="span">
+                            &#x1F61C;
+                        </div>
+                        <!-- <span>
+                            <img src="images/eye.svg" alt="Toggle Password Visibility" id="toggle-password">
+                        </span> -->
+                    </div>
+                </form>
+                <button id="login">Create Account</button>
+
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const validateEmail = (email) => {
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email);
+    };
+    const formGroup = document.querySelectorAll('.group');
+    const form = document.getElementById('form');
+
+    // validate email
+
+    // let regex = validateEmail(email.value)
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault
+        console.log("data");
+        window.location.href = 'index.html'
+
+    })
+    const btn = document.getElementById("login")
+    btn.addEventListener("click", (e) => {
+        e.preventDefault
+        console.log("sent");
+        window.location.href = "index.html"
+        // console.log(window.location);
+
+        // window.location.href = "";
+        // window.location.href = "login.html";
+
+        // window.location.assign("index.html");
+    })
+    formGroup.forEach((group, index) => {
+
+        const input = group.querySelector('input');
+        let span = group.getElementsByClassName("span")
+        console.log(group);
+        
+        let emailLocation = group.querySelector("#email")
+        input.addEventListener('focus', (e) => {
+            // span[0].classList.add('ok');
+
+        })
+        // input.addEventListener('blur', () => {
+        //     if (input.value === '') {
+        //         console.log('Input is empty');
+        //         span[1].classList.add('ok')
+        //         // group.classList.remove('focus');
+        //     } else {
+        //         // span[1].classList.add('ok');
+        //     }
+        // })
+        input.addEventListener("input",(e)=>{
+            switch (input.type) {
+                
+                case "text":
+                    if (input.value === "") {
+                    span[1].classList.remove('ok');
+
+                    span[0].classList.add('ok');
+                    }
+                    else{
+                    span[0].classList.remove('ok');
+
+                    span[1].classList.add('ok');
+
+                    }
+                    break
+                case "email":
+                    if (validateEmail(e.target.value)) {
+                        span[0].classList.remove('ok');
+                        span[1].classList.add('ok');
+
+                        console.log("Valid");
+                        
+                    }else{
+                        span[1].classList.remove('ok');
+                        span[0].classList.add('ok');
+                    }
+                    break;
+                case "password":
+                    // console.log("yoooo");
+                    
+                    if (e.target.value.length >= 10) {
+                        span[2].classList.add('ok');
+                        // console.log("long");
+                    }else{
+                        span[2].classList.remove('ok');
+
+                        span[1].classList.add('ok');
+
+                    }
+                    break
+                default:
+                    break;  
+            }
+            
+            
+        })
+        // console.log(emailLocation);
+        
+        // email.addEventListener("input", (e) => {
+        //     if (validateEmail(e.target.value)) {
+        //         span[0].classList.add('ok');
+
+        //     }
+        // })
+    });
+</script>
+
+</html>y
+

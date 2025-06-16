@@ -565,6 +565,7 @@ a {
         margin-top: 1rem;
     }
 }
+
 /* contact us page */
 
 .container {
@@ -579,16 +580,19 @@ a {
     height: calc(100vh - 100px);
     margin-top: 2rem;
 }
-.form-container{
+
+.form-container {
     padding: 4rem 3rem;
     box-shadow: var(--shadow);
 
 }
+
 .form-container form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
+
 form .form-group {
     display: flex;
     flex-direction: column;
@@ -598,6 +602,7 @@ form .form-group {
     border-radius: 8px;
     transition: .2s ease-out;
 }
+
 form .form-group label {
     margin-bottom: 0.5rem;
     color: var(--h1-text);
@@ -606,6 +611,7 @@ form .form-group label {
     /* transform: translateY(0%); */
     position: absolute;
 }
+
 form .form-group input,
 form .form-group textarea {
     width: 100%;
@@ -618,20 +624,33 @@ form .form-group textarea {
     font-size: 1rem;
     color: var(--h1-text);
 }
-form .form-group.active{
+
+form .form-group.active {
     border: #707070 2px solid;
     padding-top: 30px;
 }
+
 form .form-group.active label {
     opacity: 1;
     transform: translateY(-100%);
     /* color: var(--button); */
 }
-form .form-group:has(input:focus) > label{
+
+form .form-group:has(input:focus)>label {
     opacity: 1;
     transform: translateY(-100%);
     /* color: var(--button); */
 }
+.span{
+    display: none;
+}
+.ok{
+    display: block
+}
+#menu {
+    visibility: hidden;
+}
+
 form button {
     padding: 0.5rem 1rem;
     background-color: var(--button);
@@ -644,7 +663,274 @@ form button {
     transition: var(--transition);
     background-color: var(--button);
 }
-form .form-group:has(textarea:focus)> label{
+
+form .form-group:has(textarea:focus)>label {
     display: none;
 }
 
+/* login */
+.container-login {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.login-template {
+    background-color: var(--white);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 50px 0 0 50px;
+    /* box-shadow: var(--shadow); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form h1 {
+    font-size: 40px;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
+}
+
+.form .social {
+    display: flex;
+    gap: 10px;
+    margin: 1rem 0;
+
+}
+
+.form .social button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 16px;
+    padding: .5rem 1rem;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form p {
+    text-align: center;
+    font-weight: 600;
+    opacity: .7;
+}
+
+.form form{
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
+}
+form .group{
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.group input{
+    width: 100%;
+    padding: 1rem 0.75rem 0.5rem;
+    font-size: 16px;
+    border: 1px solid var(--h1-text);
+    border-radius: 6px;
+    outline: none;
+    background: none;
+}
+.group label{
+        position: absolute;
+    top: 1rem;
+    left: 0.75rem;
+    color: #888;
+    font-size: 16px;
+    background: var(--white);
+    padding: 0 4px;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+.group .span{
+        position: absolute;
+    top: 1rem;
+    right: 0.75rem;
+    color: #888;
+    font-size: 16px;
+    background: var(--white);
+    padding: 0 4px;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+.mobile-menu-container {
+    /* display: none; */
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    /* position: absolute; */
+    align-items: flex-end;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 10;
+    padding: 1.5rem;
+
+}
+ .group input:focus + label,
+    .group input:not(:placeholder-shown) + label {
+      top: -0.6rem;
+      left: 0.6rem;
+      font-size: 12px;
+      color: var(--primary);
+    }
+.group button{
+    width: 100%;
+}
+form .group.focus {
+    background-color: var(--button);
+}
+
+.mobile-menu-container button {
+    background-color: transparent;
+    color: var(--h1-text);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    border: 2px solid var(--h1-text);
+    /* font-size: 500; */
+    transition: all 0.3s ease-in-out;
+}
+.form a{
+    color: #00B8B8;
+}
+.left{
+    padding: 2rem .5rem;
+}
+.left h1{
+    font-size: 40px;
+    font-weight: 600;
+}
+.left p{
+    color: #222831;
+    font-size: 20px;
+}
+.mobile-menu-container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 2rem;
+    height: 100%;
+    list-style: none;
+}
+/* scroll reminder */
+
+#scrol{
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: red;
+    z-index: 100;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 2px 5px;
+    transition: .5s ease-in-out;
+}
+
+/* responsivenes  */
+@media only screen and (max-width: 600px) {
+    nav {
+        padding: 0;
+        display: flex;
+        justify-self: space-between;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        display: none;
+    }
+
+    .buttons_auth {
+        display: flex;
+        gap: 1rem;
+    }
+
+    #menu {
+        visibility: visible;
+    }
+
+    nav button {
+        align-self: flex-end;
+        background-color: transparent;
+        color: var(--h1-text);
+        padding: 0.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        border: 2px solid var(--h1-text);
+        /* font-size: 500; */
+        transition: all 0.3s ease-in-out;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .hero-content {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+    }
+
+    .hero-content .text-container {
+        /* align-items: center; */
+        text-align: center;
+    }
+
+    .buttons {
+        padding: auto;
+
+        /* flex-direction: rows; */
+        align-items: center;
+    }
+
+    .buttons button {
+        padding: 1rem;
+    }
+
+    .services,
+    .newsletter {
+        padding: 1rem;
+    }
+
+    .text-container h2 {
+        text-align: left;
+        font-size: 2.5rem;
+    }
+
+    .text-container p {
+        text-align: left;
+    }
+
+    .service-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        text-align: center;
+    }
+}
