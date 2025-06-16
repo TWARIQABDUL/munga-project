@@ -87,27 +87,9 @@
             <div class="card-container">
 
                 <div class="destination-cards">
-                    <div class="card">
-                        <img src="images/dest1.png" alt="Service 1">
-                        <div class="destination-info">
-                            <p>London, Uk <span>$4.2k</span></p>
-                            <p>12 days trip</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="images/dest2.png" alt="Service 1">
-                        <div class="destination-info">
-                            <p>London, Uk <span>$4.2k</span></p>
-                            <p>12 days trip</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="images/dest1.png" alt="Service 1">
-                        <div class="destination-info">
-                            <p>London, Uk <span>$4.2k</span></p>
-                            <p>12 days trip</p>
-                        </div>
-                    </div>
+                    
+                    <!-- dynamic location -->
+
                 </div>
             </div>
         </section>
@@ -159,16 +141,17 @@
     </footer>
     <script src="js/main.js"></script>
     <script>
+        const destination_cards = document.querySelector(".destination-cards");
         const service_cards = document.querySelector(".service-cards");
         console.log(service_cards);
-        
+
         let scrolling = 0
         window.addEventListener("scroll", () => {
             document.getElementById("scrol").innerHTML = ""
             document.getElementById("scrol").style.display = 'none'
 
             scrolling = 1
-            console.log("begin scrolling");
+            // console.log("begin scrolling");
 
 
         })
@@ -225,7 +208,7 @@
         back_button.addEventListener('click', () => {
             window.location.href = "login.html";
         });
-        const addServiceCard = (content)=>{
+        const addServiceCard = (content) => {
             const elem = document.createElement("div")
             elem.classList.add("card")
             const img = document.createElement("img")
@@ -233,31 +216,118 @@
             img.src = content.icon
             const h3 = document.createElement("h3")
             elem.appendChild(h3)
-            h3.innerHTML=content.title
+            h3.innerHTML = content.title
             const p = document.createElement("p")
             elem.appendChild(p)
             p.innerHTML = content.body
-            
+
             service_cards.append(elem);
         }
         const categories = [
             {
-                icon:"images/satellite.svg",
-                title:"Calculated Weather",
-                body:"Built Wicket longer admire do barton vanity itself do in it"
+                icon: "images/satellite.svg",
+                title: "Calculated Weather",
+                body: "Built Wicket longer admire do barton vanity itself do in it"
             },
             {
-                icon:"images/plane.svg",
-                title:"Best Flights",
-                body:"Engrossed listening. Park gate sell they west hard for the."
+                icon: "images/plane.svg",
+                title: "Best Flights",
+                body: "Engrossed listening. Park gate sell they west hard for the."
             },
             {
-                icon:"images/customization.svg",
-                title:"Customizatio",
-                body:"We deliver outsourced aviation services for military customers."
+                icon: "images/customization.svg",
+                title: "Customizatio",
+                body: "We deliver outsourced aviation services for military customers."
             }
         ]
+        const Locations = [
+            {
+                icon: "images/dest1.png",
+                location: "Kigali",
+                price: 100,
+                temp: 0,
+                weather: null,
+                humidity:null
+            },
+            {
+                icon: "images/dest2.png",
+                location: "Kampala",
+                price: 360,
+                temp: 0,
+                weather: null
+            },
+            {
+                icon: "images/dest1.png",
+                location: "London",
+                price: 134,
+                temp: 0,
+                weather: null
+            },
+        ]
         categories.map(content => addServiceCard(content))
+
+        const addLocationCard = (content) => {
+            const elem = document.createElement("div")
+            elem.classList.add("card")
+            const img = document.createElement("img")
+            elem.appendChild(img)
+            img.src = content.icon
+
+            const dest_info = document.createElement("div")
+            dest_info.classList.add("destination-info")
+            elem.appendChild(dest_info)
+            const p1 = document.createElement("p")
+
+            p1.innerHTML = content.location
+            const span = document.createElement("span")
+            span.innerHTML = `$${content.price}`
+            p1.appendChild(span)
+            dest_info.appendChild(p1)
+
+            const p2 = document.createElement("p")
+            p2.innerHTML = "Humidity"
+            dest_info.appendChild(p2)
+            const span2 = document.createElement("span")
+            span2.innerHTML = `${content.humidity} &#127777`
+            p2.appendChild(span2)
+
+            const p3 = document.createElement("p")
+            p3.innerHTML = "Curent ntly"
+            dest_info.appendChild(p3)
+            const span3 = document.createElement("span")
+            span3.innerHTML = `${(content.humidity > 80) ? " rainy &#127784;":"sunny &#9728;" } `
+            p3.appendChild(span3)
+            
+            const p4 = document.createElement("p")
+            p4.innerHTML = "temp"
+            dest_info.appendChild(p4)
+            const span4 = document.createElement("span")
+            span4.innerHTML = `${content.temp} &#127777`
+            p4.appendChild(span4)
+            
+            destination_cards.append(elem);
+        }
+
+        Locations.forEach(location => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location.location}&appid=d84e490083cc222cddc06eaa7e8119f6`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.main);
+                    
+                    location.weather = data.main.temp;
+                    location.humidity = data.main.humidity
+                    location.temp = Math.round(data.main.temp - 273.15);
+                    addLocationCard(location);
+
+                    console.log(`in ${location.location} it is ${location.weather}`);
+                    
+                })
+                .catch(error => {
+                    console.error(`Error fetching weather for ${location.location}:`, error);
+                    addLocationCard(location);
+                });
+        });
+
 
     </script>
 </body>
