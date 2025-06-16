@@ -87,6 +87,7 @@
     </div>
 </body>
 <script>
+    // validate email
     const validateEmail = (email) => {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(email);
@@ -94,9 +95,9 @@
     const formGroup = document.querySelectorAll('.group');
     const form = document.getElementById('form');
 
-    // validate email
 
-    // let regex = validateEmail(email.value)
+
+
 
     form.addEventListener("submit", (e) => {
         e.preventDefault
@@ -109,12 +110,6 @@
         e.preventDefault
         console.log("sent");
         window.location.href = "index.html"
-        // console.log(window.location);
-
-        // window.location.href = "";
-        // window.location.href = "login.html";
-
-        // window.location.assign("index.html");
     })
     formGroup.forEach((group, index) => {
 
@@ -127,15 +122,6 @@
             // span[0].classList.add('ok');
 
         })
-        // input.addEventListener('blur', () => {
-        //     if (input.value === '') {
-        //         console.log('Input is empty');
-        //         span[1].classList.add('ok')
-        //         // group.classList.remove('focus');
-        //     } else {
-        //         // span[1].classList.add('ok');
-        //     }
-        // })
         input.addEventListener("input",(e)=>{
             switch (input.type) {
                 
@@ -183,14 +169,6 @@
             
             
         })
-        // console.log(emailLocation);
-        
-        // email.addEventListener("input", (e) => {
-        //     if (validateEmail(e.target.value)) {
-        //         span[0].classList.add('ok');
-
-        //     }
-        // })
     });
 </script>
 
