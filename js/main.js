@@ -10,12 +10,27 @@ closeMenuButton.addEventListener('click', () => {
     mobileMenuContainer.style.display = 'none';
 });
 
-function multiplier(factor) {
-  return  (number)=> {
-    return number * factor;
-  };
-}
+// const test = (n)=>{
+//   return(x)=>{
+//     return n+x
+//   }
+// }
+// let j = test(30);
+// console.log(j(32));
 
-const double = multiplier(2);
-console.log(double(5)); // 10
+
+// const promise = new Promise((resolve,reject)=>{
+//   setTimeout(()=>{
+//     resolve(console.log("respone recieved"))
+//   },3000)
+// })
+// const try_it = async()=>{
+//   let response = await promise
+// console.log(response);
+// }
+
+// try_it()
+// console.log("still going");
+
+
  
