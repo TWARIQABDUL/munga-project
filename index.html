@@ -292,7 +292,12 @@
                     population: 190,
                     racism: 2,
                     hospitality: "Perfect"
-                }
+                },
+                popularPlaces: [
+                    "Muhazi",
+                    "Urukari",
+                    "Igicumbi"
+                ]
             },
             {
                 icon: "images/dest2.png",
@@ -304,14 +309,19 @@
                 description: "abeautififul place to take vation do not forget to watch your back",
                 metaImages: [
                     "images/dest1.png",
-                    "images/dest1.png",
+                    "images/dest2.png",
                     "images/dest1.png"
                 ],
                 metaDatas: {
                     population: 190,
                     racism: 2,
                     hospitality: 'Perfect'
-                }
+                },
+                popularPlaces: [
+                    "place1",
+                    "place2",
+                    "place3"
+                ]
             },
             {
                 icon: "images/dest1.png",
@@ -324,56 +334,73 @@
                 metaImages: [
                     "images/dest1.png",
                     "images/dest1.png",
-                    "images/dest1.png"
+                    "images/dest2.png"
                 ],
                 metaDatas: {
                     population: 190,
                     racism: 2,
                     hospitality: "Perfect"
-                }
+                },
+                popularPlaces: [
+                    "place1",
+                    "place2",
+                    "place3"
+                ]
             }
         ]
         // creating the dynamic box nodal
         const loopMetaImages = (item) => {
-            return item.map(img => `<img src=${img} alt=destination1.png>`).join("")
+            return item.map(img => `<img src=${img} class="previews" data-image="${img}" alt=destination1.png>`).join("")
             // console.log("items",item);
 
         }
         const loopMetaInfo = (item) => {
             // console.log("display items", item);
-            
-           let entries = Object.entries(item).map(([key,value]) =>`<p class="info">${key} <span>${value}</span></p>`)
-        //    console.log("myentries",entries);
-           
+
+            let entries = Object.entries(item).map(([key, value]) => `<p class="info">${key} <span>${value}</span></p>`)
+            //    console.log("myentries",entries);
+
             return entries.join("")
+        }
+        const loopPopular = (item) => {
+            return item.map((place) => `<span class="place">${place}</span>`).join("")
         }
         const createModalBox = (loc) => {
 
             let previewLoc = Locations.filter(a => {
                 return a.location.includes(loc)
             })
-            
+            let imgURL=previewLoc[0].icon;
             place_review.innerHTML = `
             <div class="place-review">
-                    <img src="${previewLoc[0].icon}" alt="destination1.png">
+                    <img  id="main-image" src="${imgURL}" alt="destination1.png">
                     <div class="small-cards">
                         ${loopMetaImages(previewLoc[0].metaImages)}
                     </div>
                 </div>
                 <div class="description">
                     <h3>${previewLoc[0].location} <span>rated</span></h3>
-                    <p class="description"> abeautififul place to take vation do not forget to watch your back</p>
+                    <p class="description"> ${previewLoc[0].description}</p>
                     <p class="title">Usefull info</p>
                     ${loopMetaInfo(previewLoc[0].metaDatas)}
                     
-                    <p class="info">popular Places  <span class="place">place 1</span><span class="place">place 2</span> <span class="place">place 3</span></p>
+                    <p class="info">popular Places  ${loopPopular(previewLoc[0].popularPlaces)}</p>
                     <button class="buttons">Book Your Trip</button>
                 </div>
                 <div class="close">
                     <img src="images/icon-close.svg" alt="close modal">
                 </div>
             `
-        const modal_close = document.querySelector(".close")
+            const previews = document.querySelectorAll(".previews")
+            previews.forEach(canva=>{
+                canva.addEventListener("click",()=>{
+                    document.getElementById("main-image").src=canva.dataset.image
+                    // imgURL = canva.dataset.image
+                    // console.log(canva.dataset.image);
+                    
+                })
+            })
+            const modal_close = document.querySelector(".close")
             modal_close.addEventListener("click", () => {
                 modal_box.style.display = "none"
             })
@@ -459,7 +486,7 @@
                 case "location":
                     const sortedByLocation = [...locationData].sort((a, b) => a.location - b.location);
                     sortedByLocation.forEach(loc => addLocationCard(loc));
-                    // console.log(sortedByLocation);
+                // console.log(sortedByLocation);
                 default:
                     break
             }
