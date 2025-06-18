@@ -115,7 +115,29 @@
             </div>
         </section>
 
-        
+        <div class="modal-box">
+            <div class="modal-content">
+                <!-- <div class="place-review">
+                    <img src="images/dest1.png" alt="destination1.png">
+                    <div class="small-cards">
+                    <img src="images/dest1.png" alt="destination1.png">
+                    <img src="images/dest1.png" alt="destination1.png">
+                    <img src="images/dest1.png" alt="destination1.png">
+                    </div>
+                </div>
+                <div class="description">
+                    <h3>London <span>rated</span></h3>
+                    <p class="description"> abeautififul place to take vation do not forget to watch your back</p>
+                    <p class="title">Usefull info</p>
+                    <p class="info">Population <span>14M</span></p>
+                    <p class="info">Racism <span>2% mostly Black people</span></p>
+                    <p class="info">Hospitality <span>Perfect for foreigners</span></p>
+                    <p class="info">popular Places  <span class="place">place 1</span><span class="place">place 2</span> <span class="place">place 3</span></p>
+                    <button class="buttons">Book Your Trip</button>
+                </div> -->
+
+            </div>
+        </div>
     </main>
     <footer id="footer">
         <div class="company">
@@ -151,6 +173,8 @@
     </footer>
     <script src="js/main.js"></script>
     <script>
+        const place_review = document.querySelector(".modal-content")
+        const modal_box = document.querySelector(".modal-box")
         const destination_cards = document.querySelector(".destination-cards");
         const service_cards = document.querySelector(".service-cards");
         let locationData = []
@@ -257,36 +281,108 @@
                 price: 100,
                 temp: 0,
                 weather: null,
-                humidity: null
+                humidity: null,
+                description: "abeautififul place to take vation do not forget to watch your back",
+                metaImages: [
+                    "images/dest1.png",
+                    "images/dest1.png",
+                    "images/dest1.png"
+                ],
+                metaDatas: {
+                    population: 190,
+                    racism: 2,
+                    hospitality: "Perfect"
+                }
             },
             {
                 icon: "images/dest2.png",
+                location: "London",
+                price: 100,
+                temp: 0,
+                weather: null,
+                humidity: null,
+                description: "abeautififul place to take vation do not forget to watch your back",
+                metaImages: [
+                    "images/dest1.png",
+                    "images/dest1.png",
+                    "images/dest1.png"
+                ],
+                metaDatas: {
+                    population: 190,
+                    racism: 2,
+                    hospitality: 'Perfect'
+                }
+            },
+            {
+                icon: "images/dest1.png",
                 location: "Kampala",
-                price: 360,
+                price: 100,
                 temp: 0,
-                weather: null
-            },
-            {
-                icon: "images/dest1.png",
-                location: "London",
-                price: 134,
-                temp: 0,
-                weather: null
-            },
-            {
-                icon: "images/dest1.png",
-                location: "London",
-                price: 500,
-                temp: 0,
-                weather: null
-            },
+                weather: null,
+                humidity: null,
+                description: "abeautififul place to take vation do not forget to watch your back",
+                metaImages: [
+                    "images/dest1.png",
+                    "images/dest1.png",
+                    "images/dest1.png"
+                ],
+                metaDatas: {
+                    population: 190,
+                    racism: 2,
+                    hospitality: "Perfect"
+                }
+            }
         ]
+        // creating the dynamic box nodal
+        const loopMetaImages = (item) => {
+            return item.map(img => `<img src=${img} alt=destination1.png>`).join("")
+            // console.log("items",item);
+
+        }
+        const loopMetaInfo = (item) => {
+            // console.log("display items", item);
+            
+           let entries = Object.entries(item).map(([key,value]) =>`<p class="info">${key} <span>${value}</span></p>`)
+        //    console.log("myentries",entries);
+           
+            return entries.join("")
+        }
+        const createModalBox = (loc) => {
+
+            let previewLoc = Locations.filter(a => {
+                return a.location.includes(loc)
+            })
+            
+            place_review.innerHTML = `
+            <div class="place-review">
+                    <img src="${previewLoc[0].icon}" alt="destination1.png">
+                    <div class="small-cards">
+                        ${loopMetaImages(previewLoc[0].metaImages)}
+                    </div>
+                </div>
+                <div class="description">
+                    <h3>${previewLoc[0].location} <span>rated</span></h3>
+                    <p class="description"> abeautififul place to take vation do not forget to watch your back</p>
+                    <p class="title">Usefull info</p>
+                    ${loopMetaInfo(previewLoc[0].metaDatas)}
+                    
+                    <p class="info">popular Places  <span class="place">place 1</span><span class="place">place 2</span> <span class="place">place 3</span></p>
+                    <button class="buttons">Book Your Trip</button>
+                </div>
+                <div class="close">
+                    <img src="images/icon-close.svg" alt="close modal">
+                </div>
+            `
+        const modal_close = document.querySelector(".close")
+            modal_close.addEventListener("click", () => {
+                modal_box.style.display = "none"
+            })
+        }
         categories.map(content => addServiceCard(content))
 
         const addLocationCard = (content) => {
             const elem = document.createElement("div")
             elem.classList.add("card")
-            elem.dataset.price = content.price
             elem.dataset.location = content.location
 
             elem.innerHTML = `
@@ -299,6 +395,11 @@
                 </div>
             `
             destination_cards.append(elem);
+            elem.addEventListener("click", (e) => {
+                modal_box.style.display = "block"
+                createModalBox(elem.dataset.location)
+
+            })
         }
 
 
@@ -320,10 +421,10 @@
                         // return respons.main
                         addLocationCard(location);
                         locationData.push(location)
-                      
-                    }).catch(e=>{
+
+                    }).catch(e => {
                         console.error("Fetch problem detected", e)
-                        
+
                     })
             })
         }
@@ -352,13 +453,13 @@
                 case "temperature":
                     const sortedByTemp = [...locationData].sort((a, b) => a.temp - b.temp);
                     sortedByTemp.forEach(loc => addLocationCard(loc));
-                    console.log(sortedByTemp);
+                    // console.log(sortedByTemp);
 
                     break;
                 case "location":
                     const sortedByLocation = [...locationData].sort((a, b) => a.location - b.location);
                     sortedByLocation.forEach(loc => addLocationCard(loc));
-                    console.log(sortedByLocation);
+                    // console.log(sortedByLocation);
                 default:
                     break
             }
