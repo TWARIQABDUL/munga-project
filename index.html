@@ -114,6 +114,8 @@
                 </form>
             </div>
         </section>
+
+        
     </main>
     <footer id="footer">
         <div class="company">
@@ -156,7 +158,6 @@
         const filterData = document.getElementById("locationFilter")
         const search_input = document.getElementById("search-input")
 
-        console.log(filterData);
 
         window.addEventListener("scroll", () => {
             document.getElementById("scrol").innerHTML = ""
@@ -302,29 +303,31 @@
 
 
         const fetchWeatherInfo = async (locatioList) => {
-            let weatherInfo = Promise.all(locatioList.map(async (location) => {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location.location}&appid=d84e490083cc222cddc06eaa7e8119f6`);
-                let data = await response.json()
-                // console.log(data);
-                // console.log("locattio", location);
-
-                location.weather = data.main.temp;
-                location.humidity = data.main.humidity
-                location.temp = Math.round(data.main.temp - 273.15);
-                addLocationCard(location);
-
-                return location
-            }));
-            // console.log("wether", weatherInfo);
-
-            return weatherInfo
+            let info = locatioList.map(location => {
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location.location}&appid=d84e490083cc222cddc06eaa7e8119f6`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Something went wrong here");
+                        }
+                        // console.log(response);
+                        return response.json()
+                    })
+                    .then(respons => {
+                        location.weather = respons.main.temp;
+                        location.humidity = respons.main.humidity
+                        location.temp = Math.round(respons.main.temp - 2)
+                        // console.log("some",respons);
+                        // return respons.main
+                        addLocationCard(location);
+                        locationData.push(location)
+                      
+                    }).catch(e=>{
+                        console.error("Fetch problem detected", e)
+                        
+                    })
+            })
         }
         fetchWeatherInfo(Locations)
-            .then(data => {
-                locationData = data
-                // console.log(locationData);
-
-            })
         search_input.addEventListener("input", (e) => {
             const searchTerm = e.target.value.toLowerCase();
 
@@ -337,8 +340,6 @@
         });
         // getting the filter info
         filterData.addEventListener('change', (e) => {
-            console.log(e.target.value);
-            console.log(locationData);
 
             destination_cards.innerHTML = ""
 
@@ -363,12 +364,6 @@
             }
         })
         // console.log("resolved");
-
-        const cards = document.querySelectorAll(".cards");
-        console.log(cards)
-        const filltering = () => {
-
-        }
     </script>
 </body>
 
