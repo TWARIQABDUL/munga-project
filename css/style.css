@@ -641,12 +641,15 @@ form .form-group:has(input:focus)>label {
     transform: translateY(-100%);
     /* color: var(--button); */
 }
-.span{
+
+.span {
     display: none;
 }
-.ok{
+
+.ok {
     display: block
 }
+
 #menu {
     visibility: hidden;
 }
@@ -721,16 +724,18 @@ form {
     opacity: .7;
 }
 
-.form form{
+.form form {
     display: block;
     margin-top: 0em;
     unicode-bidi: isolate;
 }
-form .group{
+
+form .group {
     position: relative;
     margin-bottom: 1.5rem;
 }
-.group input{
+
+.group input {
     width: 100%;
     padding: 1rem 0.75rem 0.5rem;
     font-size: 16px;
@@ -739,8 +744,9 @@ form .group{
     outline: none;
     background: none;
 }
-.group label{
-        position: absolute;
+
+.group label {
+    position: absolute;
     top: 1rem;
     left: 0.75rem;
     color: #888;
@@ -750,8 +756,9 @@ form .group{
     pointer-events: none;
     transition: all 0.2s ease;
 }
-.group .span{
-        position: absolute;
+
+.group .span {
+    position: absolute;
     top: 1rem;
     right: 0.75rem;
     color: #888;
@@ -761,6 +768,7 @@ form .group{
     pointer-events: none;
     transition: all 0.2s ease;
 }
+
 .mobile-menu-container {
     /* display: none; */
     position: fixed;
@@ -775,16 +783,19 @@ form .group{
     padding: 1.5rem;
 
 }
- .group input:focus + label,
-    .group input:not(:placeholder-shown) + label {
-      top: -0.6rem;
-      left: 0.6rem;
-      font-size: 12px;
-      color: var(--primary);
-    }
-.group button{
+
+.group input:focus+label,
+.group input:not(:placeholder-shown)+label {
+    top: -0.6rem;
+    left: 0.6rem;
+    font-size: 12px;
+    color: var(--primary);
+}
+
+.group button {
     width: 100%;
 }
+
 form .group.focus {
     background-color: var(--button);
 }
@@ -801,20 +812,25 @@ form .group.focus {
     /* font-size: 500; */
     transition: all 0.3s ease-in-out;
 }
-.form a{
+
+.form a {
     color: #00B8B8;
 }
-.left{
+
+.left {
     padding: 2rem .5rem;
 }
-.left h1{
+
+.left h1 {
     font-size: 40px;
     font-weight: 600;
 }
-.left p{
+
+.left p {
     color: #222831;
     font-size: 20px;
 }
+
 .mobile-menu-container ul {
     display: flex;
     flex-direction: column;
@@ -823,9 +839,10 @@ form .group.focus {
     height: 100%;
     list-style: none;
 }
+
 /* scroll reminder */
 
-#scrol{
+#scrol {
     display: none;
     position: fixed;
     top: 0;
@@ -837,87 +854,101 @@ form .group.focus {
     margin: 2px 5px;
     transition: .5s ease-in-out;
 }
+
 /* filtering */
 
-.filter select,.filter input{
+.filter select,
+.filter input {
     padding: .5rem;
     outline: #888;
 }
+
 /* modal-box */
-.show{
-   display: block; 
+.show {
+    display: block;
 }
-.modal-box{
+
+.modal-box {
     display: none;
     position: fixed;
     height: 100vh;
     width: 100%;
-    background-color: var(--bg-primary) ;
+    background-color: var(--bg-primary);
     overflow-y: scroll;
     /* opacity: .9; */
     top: 0;
     left: 0;
     z-index: 10;
 }
-.modal-content{
-    
+
+.modal-content {
+
     display: grid;
     grid-template-columns: 60% 40%;
     padding: 5rem 10rem;
     gap: 30px;
 }
-.place-review{
+
+.place-review {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.place-review > img{
+
+.place-review>img {
     z-index: 100;
     height: calc(80vh - 10rem);
     border-radius: 10px;
     object-fit: cover;
 }
-.small-cards{
+
+.small-cards {
     display: flex;
     gap: 1rem;
 }
 
-.small-cards > img{
+.small-cards>img {
     height: 100px;
     width: 100%;
     border-radius: 10px;
     object-fit: cover;
 }
 
-.description h3{
+.description h3 {
     font-size: 17px;
     margin-bottom: 1rem;
 }
-p.info{
+
+p.info {
     display: flex;
     justify-content: space-between;
     padding: .5rem;
 }
-p.info span{
-    color: var(--hero-text-color); 
+
+p.info span {
+    color: var(--hero-text-color);
 }
-.place{
+
+.place {
     background: var(--h1-text);
     padding: 3px 6px;
     border-radius: 10px;
 }
-.description button{
+
+.description button {
     background-color: var(--yellow);
     padding: 10px 20px;
     border: 0;
     border-radius: 5px;
 }
-.close{
+
+.close {
     position: absolute;
     top: 10px;
     right: 20px;
     cursor: pointer;
 }
+
 /* responsivenes  */
 @media only screen and (max-width: 600px) {
     nav {
@@ -1012,5 +1043,24 @@ p.info span{
         grid-template-columns: 1fr;
         padding: 1rem;
         text-align: center;
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        padding: .5rem 1rem;
+        gap: 30px;
+    }
+    .close{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #222831;
+        padding: 5px;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        z-index: 100;
+        color: var(--bg-primary);
     }
 }
